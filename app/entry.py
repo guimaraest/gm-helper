@@ -14,6 +14,7 @@ def run():
 
     p_new = sub.add_parser("new", help="Create a new directive")
     p_new.add_argument("name", help="Directive file name (no extension)")
+    p_new.add_argument("--template", "-t", default=None, help="Template to use")
 
     p_build = sub.add_parser("build", help="Preview a built directive")
     p_build.add_argument("file", help="Directive file name (no extension)")
@@ -27,7 +28,7 @@ def run():
     if args.command == "help":
         parser.print_help()
     elif args.command == "new":
-        new_file(args.name)
+        new_file(args.name, template=args.template)
     elif args.command == "build":
         build_directive(args.file)
     elif args.command == "send":
