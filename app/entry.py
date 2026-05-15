@@ -32,5 +32,4 @@ def run():
     elif args.command == "build":
         build_directive(args.file)
     elif args.command == "send":
-        build_directive(args.file)
         send_mail(args.file, confirm=args.confirm)
