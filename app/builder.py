@@ -1,10 +1,13 @@
 import os
-
-DIRECTIVES_DIR = os.path.join(os.path.dirname(__file__), "..", "directives")
+from app.context import get_directives_dir
 
 
 def _resolve_path(file_name: str) -> str | None:
-    path = file_name if os.path.exists(file_name) else os.path.join(DIRECTIVES_DIR, file_name)
+    directives_dir = get_directives_dir()
+    if not directives_dir:
+        print(" [X] No GM project found. Run 'gm init' first.")
+        return None
+    path = file_name if os.path.exists(file_name) else os.path.join(directives_dir, file_name)
     if not path.endswith(".md"):
         path += ".md"
     return path if os.path.exists(path) else None
